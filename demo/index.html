@@ -5,7 +5,7 @@
     <title>Afterlag.js</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="../dist/jquery.afterlag.min.js"></script> 
+    <script src="../dist/jquery.afterlag.js"></script> 
     <style>
       .loader {
         width: 20px;
@@ -30,13 +30,12 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Stability.js</h1>
-        <p>This plugin allow you do something on page stable not just load. It is useful for welcome animation as an example.</p>
+        <h1>Afterlag.js</h1>
       </div>
       <div class="row">
         <div class="col-xs-6">
           <div class="panel panel-default">
-            <div class="panel-heading">Run on load.</div>
+            <div class="panel-heading">Запуск при загрузке страницы.</div>
             <div class="panel-body text-center">
               <div class="loader-wrap">
                 <span class="loader"></span>
@@ -46,7 +45,7 @@
         </div>
         <div class="col-xs-6">
           <div class="panel panel-default">
-            <div class="panel-heading">Run on stability.</div>
+            <div class="panel-heading">Запуск после окончания лагов.</div>
             <div class="panel-body">
               <div class="loader-wrap">
                 <span class="loader"></span>
@@ -74,12 +73,12 @@
             loader_start($first_loader);
             $last_loader.afterlag(function() {
               loader_start($last_loader);
-            });            
+            });  
           });
         </script>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading">Bad guys, which make page unstable.</div>
+        <div class="panel-heading">Видео с ютуба здорово тормозят страницу при загрузке.</div>
         <div class="panel-body">
           <div class="container-fluid">
             <div class="row">

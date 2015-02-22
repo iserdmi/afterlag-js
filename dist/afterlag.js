@@ -29,7 +29,7 @@
       scatter: 5,
       min_delta: null,
       max_delta: null,
-      max: null
+      timeout: null
     };
 
     function Afterlag(options) {
@@ -42,10 +42,10 @@
       self = this;
       this.ready = false;
       this.status = 'processing';
-      if (this.options.max > 0) {
+      if (this.options.timeout > 0) {
         this._timeout_process = setTimeout(function() {
           return self._finish('timeout');
-        }, this.options.max);
+        }, this.options.timeout);
       }
       this._time_started = new Date().getTime();
       this._last_checked = this._time_started;
@@ -70,26 +70,7 @@
 
     Afterlag.prototype._set_options = function(options) {
       this.options = AfterlagHelper.merge_options(this.constructor.defaults, options);
-      if (this.options.frequency != null) {
-        this.options.frequency = parseInt(this.options.frequency);
-      }
-      if (this.options.iterations != null) {
-        this.options.iterations = parseInt(this.options.iterations);
-      }
-      if (this.options.scatter != null) {
-        this.options.scatter = parseInt(this.options.scatter);
-      }
-      if (this.options.min_delta != null) {
-        this.options.min_delta = parseInt(this.options.min_delta);
-      }
-      if (this.options.max_delta != null) {
-        this.options.max_delta = parseInt(this.options.max_delta);
-      }
-      if (this.options.max != null) {
-        this.options.max = parseInt(this.options.max);
-      }
       if (this.options.duration != null) {
-        this.options.duration = parseInt(this.options.duration);
         this.options.iterations = Math.ceil(this.options.duration / this.options.frequency);
       }
       if (this.options.min_delta == null) {

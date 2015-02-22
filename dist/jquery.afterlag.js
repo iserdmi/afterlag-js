@@ -29,7 +29,7 @@
       scatter: 5,
       min_delta: null,
       max_delta: null,
-      max: null
+      timeout: null
     };
 
     function Afterlag(options) {
@@ -42,10 +42,10 @@
       self = this;
       this.ready = false;
       this.status = 'processing';
-      if (this.options.max > 0) {
+      if (this.options.timeout > 0) {
         this._timeout_process = setTimeout(function() {
           return self._finish('timeout');
-        }, this.options.max);
+        }, this.options.timeout);
       }
       this._time_started = new Date().getTime();
       this._last_checked = this._time_started;
@@ -70,26 +70,7 @@
 
     Afterlag.prototype._set_options = function(options) {
       this.options = AfterlagHelper.merge_options(this.constructor.defaults, options);
-      if (this.options.frequency != null) {
-        this.options.frequency = parseInt(this.options.frequency);
-      }
-      if (this.options.iterations != null) {
-        this.options.iterations = parseInt(this.options.iterations);
-      }
-      if (this.options.scatter != null) {
-        this.options.scatter = parseInt(this.options.scatter);
-      }
-      if (this.options.min_delta != null) {
-        this.options.min_delta = parseInt(this.options.min_delta);
-      }
-      if (this.options.max_delta != null) {
-        this.options.max_delta = parseInt(this.options.max_delta);
-      }
-      if (this.options.max != null) {
-        this.options.max = parseInt(this.options.max);
-      }
       if (this.options.duration != null) {
-        this.options.duration = parseInt(this.options.duration);
         this.options.iterations = Math.ceil(this.options.duration / this.options.frequency);
       }
       if (this.options.min_delta == null) {
@@ -166,50 +147,78 @@
   window.Afterlag = Afterlag;
 
   (function($) {
-    var last_afterlag;
+    var last_afterlag, new_faterlag, normalize_data;
     last_afterlag = null;
-    $.afterlag = function(options) {
+    new_faterlag = function(options) {
       if (options == null) {
         options = {};
       }
       last_afterlag = new Afterlag(options);
       return last_afterlag;
     };
-    return $.fn.afterlag = function(options, callback) {
-      var afterlag;
+    normalize_data = function(options, callback) {
+      var afterlag, trigger;
+      trigger = null;
       if (options == null) {
-        options = {};
-        afterlag = last_afterlag != null ? last_afterlag : $.afterlag();
+        afterlag = last_afterlag != null ? last_afterlag : new_faterlag();
       } else if (callback == null) {
         if (typeof options === 'function') {
           callback = options;
-          options = {};
-          afterlag = last_afterlag != null ? last_afterlag : $.afterlag();
+          afterlag = last_afterlag != null ? last_afterlag : new_faterlag();
         } else if (typeof options === 'string') {
-          callback = function(info) {
-            return $(this).trigger(options, [info]);
-          };
-          afterlag = last_afterlag != null ? last_afterlag : $.afterlag();
+          trigger = options;
+          callback = null;
+          afterlag = last_afterlag != null ? last_afterlag : new_faterlag();
         }
       } else {
         if (options === true) {
-          afterlag = $.afterlag();
+          afterlag = new_faterlag();
         } else if (options instanceof Afterlag) {
           afterlag = options;
         } else {
-          afterlag = $.afterlag(options);
+          afterlag = new_faterlag(options);
+        }
+        if (typeof callback === 'string') {
+          trigger = callback;
+          callback = null;
         }
       }
+      return {
+        afterlag: afterlag,
+        callback: callback,
+        trigger: trigger
+      };
+    };
+    $.afterlag = function(options, callback) {
+      var data;
+      data = normalize_data(options, callback);
+      data.afterlag["do"](function(info) {
+        if (data.callback != null) {
+          data.callback.call(data.afterlag, info);
+        }
+        $(document).trigger('afterlag', [info]);
+        if (data.trigger != null) {
+          return $(document).trigger(data.trigger, [info]);
+        }
+      });
+      return data.afterlag;
+    };
+    return $.fn.afterlag = function(options, callback) {
+      var data;
+      data = normalize_data(options, callback);
       return this.each(function() {
         var $element, self;
         $element = $(this);
-        $element.data('afterlag', afterlag);
+        $element.data('afterlag', data.afterlag);
         self = this;
-        return afterlag["do"](function(info) {
-          if (callback != null) {
-            callback.call(self, info);
+        return data.afterlag["do"](function(info) {
+          if (data.callback != null) {
+            data.callback.call(self, info);
           }
-          return $element.trigger('afterlag', [info]);
+          $element.trigger('afterlag', [info]);
+          if (data.trigger != null) {
+            return $element.trigger(data.trigger, [info]);
+          }
         });
       });
     };

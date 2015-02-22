@@ -16,7 +16,7 @@ class Afterlag
     scatter: 5
     min_delta: null
     max_delta: null    
-    max: null
+    timeout: null
 
   constructor: (options={}) ->
     @_set_options options
@@ -24,10 +24,10 @@ class Afterlag
     self = @
     @ready = false
     @status = 'processing'
-    if @options.max > 0
+    if @options.timeout > 0
       @_timeout_process = setTimeout ->
         self._finish 'timeout'
-      , @options.max
+      , @options.timeout
     @_time_started = new Date().getTime()
     @_last_checked = @_time_started
     @_success_iterations = 0
@@ -46,18 +46,8 @@ class Afterlag
     , @options.delay
 
   _set_options: (options) ->
-    # Merge options with defaults
     @options = AfterlagHelper.merge_options(@constructor.defaults, options)
-
-    # Normalize options
-    @options.frequency = parseInt(@options.frequency) if @options.frequency?
-    @options.iterations = parseInt(@options.iterations) if @options.iterations?
-    @options.scatter = parseInt(@options.scatter) if @options.scatter?
-    @options.min_delta = parseInt(@options.min_delta) if @options.min_delta?
-    @options.max_delta = parseInt(@options.max_delta) if @options.max_delta?
-    @options.max = parseInt(@options.max) if @options.max?
     if @options.duration?
-      @options.duration = parseInt @options.duration
       @options.iterations = Math.ceil(@options.duration / @options.frequency)
     if not @options.min_delta?
       @options.min_delta = - @options.scatter
