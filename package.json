@@ -1,7 +1,7 @@
 {
   "name": "afterlag-js",
   "version": "1.0.0",
-  "description": "Do something when page is stable, not just loaded.",
+  "description": "Do something after lag.",
   "main": "gulpfile.js",
   "devDependencies": {
     "coffee-script": "^1.9.1",

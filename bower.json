@@ -5,7 +5,7 @@
   "authors": [
     "Sergey Dmitriev (serdmi.com)"
   ],
-  "description": "Do something when page is stable, not just loaded.",
+  "description": "Do something after lag.",
   "main": "dist/afterlag.min.js",
   "license": "MIT",
   "ignore": [
