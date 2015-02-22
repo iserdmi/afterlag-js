@@ -8,7 +8,7 @@ Afterlag.js реализована на нативном JavaScript. Также 
 ## Быстрый старт
 Выберите какой плагин вы будете использовать, нативный или jQuery. Затем добавьте его на свою HTML страницу.
 ```
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.3/dist/jquery.afterlag.min.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/jquery.afterlag.min.js" type="text/javascript"></script>
 ```
 ```
 // Нативный JavaScript
@@ -22,7 +22,7 @@ afterlag.do(function() {
 ```
 При подключении файла с jQuery плагином, не нужно подключать файл с нативным плагином.
 ```
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.3/dist/afterlag.min.js" type="text/javascript"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/afterlag.min.js" type="text/javascript"></script>
 ```
 ```
 // jQuery плагин
@@ -169,8 +169,8 @@ afterlag = new Afterlag({
 
 Даже на cdn есть. Ссылка на последнюю версию. Если нужна будет какая-то другая версия, измените «1.0.3» в ссылке на нужное значение:
 ```
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.3/dist/afterlag.min.js
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.3/dist/jquery.afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/jquery.afterlag.min.js
 ```
 
 И только в крайнем случае скачивайте напрямую.
