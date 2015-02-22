@@ -185,6 +185,11 @@
           callback = options;
           options = {};
           afterlag = last_afterlag != null ? last_afterlag : $.afterlag();
+        } else if (typeof options === 'string') {
+          callback = function(info) {
+            return $(this).trigger(options, [info]);
+          };
+          afterlag = last_afterlag != null ? last_afterlag : $.afterlag();
         }
       } else {
         if (options === true) {

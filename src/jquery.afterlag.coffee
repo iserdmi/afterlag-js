@@ -16,6 +16,9 @@ do ($=jQuery) ->
         callback = options
         options = {}
         afterlag = if last_afterlag? then last_afterlag else $.afterlag()
+      else if typeof options == 'string'
+        callback = (info) -> $(@).trigger options, [info]
+        afterlag = if last_afterlag? then last_afterlag else $.afterlag()
     else
       if options == true
         afterlag = $.afterlag()
