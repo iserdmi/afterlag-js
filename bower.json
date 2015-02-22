@@ -12,7 +12,11 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "gulpfile.js",
+    "gulpfile.coffee",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "src"
   ]
 }
