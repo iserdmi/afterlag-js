@@ -167,7 +167,7 @@ afterlag = new Afterlag({
 Можете через npm:  
 `$ npm install afterlag-js`
 
-Даже на cdn есть. Ссылка на последнюю версию. Если нужна будет какая-то другая версия, измените «1.0.3» в ссылке на нужное значение:
+Даже на cdn есть. Ссылка на последнюю версию. Если нужна будет какая-то другая версия, измените «1.0.4» в ссылке на нужное значение:
 ```
 https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/afterlag.min.js
 https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/jquery.afterlag.min.js
