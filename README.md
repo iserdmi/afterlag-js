@@ -94,20 +94,20 @@ $.afterlag(options, function(info) {})
 Если вам необходимо заново проверить есть ли лаги на странице, вы можете таким образом создать новый объект и передать в него колбэк.
 
 ```js
-$.afterlag(string)
-$.afterlag(true, string)
-$.afterlag(options, string)
+$.afterlag(string);
+$.afterlag(true, string);
+$.afterlag(options, string);
 ```
 Если вместо функции передать строку `string`, то по завершении лагов на `$(document)` будет вызвано событие, переданное в `string`. Событие `"afterlag"` также будет вызвано.
 
 ```js
-$(selector).afterlag()
-$(selector).afterlag(function(info) {})
-$(selector).afterlag(true, function(info) {})
-$(selector).afterlag(options, function(info) {})
-$(selector).afterlag(string)
-$(selector).afterlag(true, string)
-$(selector).afterlag(options, string)
+$(selector).afterlag();
+$(selector).afterlag(function(info) {});
+$(selector).afterlag(true, function(info) {});
+$(selector).afterlag(options, function(info) {});
+$(selector).afterlag(string);
+$(selector).afterlag(true, string);
+$(selector).afterlag(options, string);
 ```
 Вся разница заключается в том, что внутри переданных функций `this` будет содержать в себе `$(selector)`, а все события вместо того, чтобы вызываться на `$(document)` будут вызываться на `$(selector)`.
 
