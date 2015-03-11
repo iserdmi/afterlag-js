@@ -134,11 +134,11 @@ afterlag = new Afterlag()
 ```js
 // Ниже перечислены настройки установленные по умолчанию
 afterlag = new Afterlag({
-  delay: 100
-  frequency: 30
-  iterations: 3
-  duration: null
-  scatter: 5
+  delay: 100,
+  frequency: 30,
+  iterations: 3,
+  duration: null,
+  scatter: 5,
   timeout: null
 })
 ```
