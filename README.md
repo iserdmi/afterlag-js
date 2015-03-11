@@ -86,10 +86,10 @@ $.afterlag(function(info) {})
 
 ```js
 // Создание колбэка и нового объекта
-$.afterlag(true, function(info) {})
+$.afterlag(true, function(info) {});
 
 // Создание колбэка и нового объекта с передачей настроек
-$.afterlag(options, function(info) {})
+$.afterlag(options, function(info) {});
 ```
 Если вам необходимо заново проверить есть ли лаги на странице, вы можете таким образом создать новый объект и передать в него колбэк.
 
