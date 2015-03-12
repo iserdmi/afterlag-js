@@ -1,3 +1,4 @@
+/* Afterlag.js 1.0.5 — Plugin for tracking page load lags. Author: Sergey Dmitriev (serdmi.com). Licensed MIT. */
 (function() {
   var Afterlag, AfterlagHelper;
 
@@ -5,13 +6,15 @@
     function AfterlagHelper() {}
 
     AfterlagHelper.merge_options = function(first_object, second_object) {
-      var key, result_object;
+      var el, key, result_object;
       result_object = {};
       for (key in first_object) {
-        result_object[key] = first_object[key];
+        el = first_object[key];
+        result_object[key] = el;
       }
       for (key in second_object) {
-        result_object[key] = second_object[key];
+        el = second_object[key];
+        result_object[key] = el;
       }
       return result_object;
     };
@@ -22,14 +25,15 @@
 
   Afterlag = (function() {
     Afterlag.defaults = {
-      delay: 100,
-      frequency: 30,
-      iterations: 3,
+      delay: 200,
+      frequency: 50,
+      iterations: 10,
       duration: null,
       scatter: 5,
       min_delta: null,
       max_delta: null,
-      timeout: null
+      timeout: null,
+      need_lags: false
     };
 
     function Afterlag(options) {
@@ -41,27 +45,31 @@
       this._callbacks = [];
       self = this;
       this.ready = false;
+      this._lags_was = false;
       this.status = 'processing';
       if (this.options.timeout > 0) {
         this._timeout_process = setTimeout(function() {
           return self._finish('timeout');
         }, this.options.timeout);
       }
-      this._time_started = new Date().getTime();
-      this._last_checked = this._time_started;
       this._success_iterations = 0;
       this._preprocess = setTimeout(function() {
+        self._time_started = new Date().getTime();
+        self._last_checked = self._time_started;
         return self._process = setInterval(function() {
           var delta, now;
           now = new Date().getTime();
           delta = now - self._last_checked - self.options.frequency;
           if ((self.options.min_delta < delta && delta < self.options.max_delta)) {
-            self._success_iterations++;
-            if (self._success_iterations >= self.options.iterations) {
-              self._finish('success');
+            if (!self.options.need_lags || self._lags_was) {
+              self._success_iterations++;
+              if (self._success_iterations >= self.options.iterations) {
+                self._finish('success');
+              }
             }
           } else {
             self._success_iterations = 0;
+            self._lags_was = true;
           }
           return self._last_checked = now;
         }, self.options.frequency);
@@ -122,12 +130,9 @@
     };
 
     Afterlag.prototype["do"] = function(self, fn) {
+      var ref;
       if (fn == null) {
-        fn = null;
-      }
-      if (fn == null) {
-        fn = self;
-        self = this;
+        ref = [self, this], fn = ref[0], self = ref[1];
       }
       if (this.ready) {
         fn.call(self, this.info());
@@ -168,8 +173,8 @@
         } else if (typeof options === 'string') {
           trigger = options;
           callback = null;
-          afterlag = last_afterlag != null ? last_afterlag : new_faterlag();
         }
+        afterlag = last_afterlag != null ? last_afterlag : new_faterlag();
       } else {
         if (options === true) {
           afterlag = new_faterlag();

@@ -18,7 +18,7 @@ do ($=jQuery) ->
       else if typeof options == 'string'
         trigger = options
         callback = null        
-        afterlag = if last_afterlag? then last_afterlag else new_faterlag()
+      afterlag = if last_afterlag? then last_afterlag else new_faterlag()
     else
       if options == true
         afterlag = new_faterlag()

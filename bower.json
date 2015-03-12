@@ -1,11 +1,11 @@
 {
   "name": "afterlag-js",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "homepage": "https://github.com/iserdmi/afterlag-js",
   "authors": [
     "Sergey Dmitriev (serdmi.com)"
   ],
-  "description": "Do something after lag.",
+  "description": "Plugin for tracking page load lags.",
   "main": "dist/afterlag.min.js",
   "license": "MIT",
   "ignore": [

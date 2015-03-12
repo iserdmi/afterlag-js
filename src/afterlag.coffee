@@ -1,46 +1,50 @@
 class AfterlagHelper
   @merge_options: (first_object, second_object) ->
     result_object = {}
-    for key of first_object
-      result_object[key] = first_object[key]
-    for key of second_object
-      result_object[key] = second_object[key]
+    for key, el of first_object
+      result_object[key] = el
+    for key, el of second_object
+      result_object[key] = el
     result_object
 
 class Afterlag
   @defaults:
-    delay: 100
-    frequency: 30
-    iterations: 3
+    delay: 200
+    frequency: 50
+    iterations: 10
     duration: null
     scatter: 5
     min_delta: null
     max_delta: null    
     timeout: null
+    need_lags: false
 
   constructor: (options={}) ->
     @_set_options options
     @_callbacks = []
     self = @
     @ready = false
+    @_lags_was = false
     @status = 'processing'
     if @options.timeout > 0
       @_timeout_process = setTimeout ->
         self._finish 'timeout'
       , @options.timeout
-    @_time_started = new Date().getTime()
-    @_last_checked = @_time_started
     @_success_iterations = 0
     @_preprocess = setTimeout ->
+      self._time_started = new Date().getTime()
+      self._last_checked = self._time_started
       self._process = setInterval ->
         now = new Date().getTime()
         delta = now - self._last_checked - self.options.frequency
         if self.options.min_delta < delta < self.options.max_delta
-          self._success_iterations++
-          if self._success_iterations >= self.options.iterations
-            self._finish 'success'
+          if not self.options.need_lags or self._lags_was
+            self._success_iterations++
+            if self._success_iterations >= self.options.iterations
+              self._finish 'success'
         else
           self._success_iterations = 0
+          self._lags_was = true
         self._last_checked = now
       , self.options.frequency
     , @options.delay
@@ -76,10 +80,9 @@ class Afterlag
     for callback in @_callbacks
       callback.fn.call(callback.self, @info())
 
-  do: (self, fn=null) ->
+  do: (self, fn) ->
     if not fn?
-      fn = self
-      self = @
+      [fn, self] = [self, @]
     if @ready
       fn.call(self, @info())
     else

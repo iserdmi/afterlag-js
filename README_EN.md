@@ -10,7 +10,7 @@ Afterlag is built in native Javascript. jQuery plugin also exists. Plugin works 
 ## Быстрый старт
 Выберите, какой плагин вы будете использовать: нативный или джэйквери. Затем добавьте файл с плагином на свой сайт.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js"></script>
 ```
 ```js
 // Нативный яваскрипт
@@ -24,7 +24,7 @@ afterlag.do(function() {
 ```
 При подключении файла с джэйквери плагином, не нужно подключать файл с нативным плагином.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/jquery.afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js"></script>
 ```
 ```js
 // Джэйквери плагин
@@ -37,7 +37,7 @@ $.afterlag(function() {
 ```
 
 ## Принцип работы
-При создании нового объекта `new Afterlag()` запускается интервал, который каждые 30 миллисекунд проверяет, сколько реально времени прошло с момента его последнего запуска. Если прошло 30 миллисекунд — как ожидалось — значит, лаги кончились. Чтобы убедиться наверняка, ждём, пока время сойдётся 3 раза подряд. Все перечисленные выше значения можно изменить в настройках.
+При создании нового объекта `new Afterlag()` запускается интервал, который каждые 50 миллисекунд проверяет, сколько реально времени прошло с момента его последнего запуска. Если прошло 50 миллисекунд — как ожидалось — значит, лаги кончились. Чтобы убедиться наверняка, ждём, пока время сойдётся 10 раз подряд. Все перечисленные выше значения можно изменить в настройках.
 
 После того как лаги пройдут, будут вызваны все функции переданные через `afterlag.do()`. Если функция будет передана в `afterlag.do()` уже после того, как кончатся лаги, функция будет вызвана немедленно.
 
@@ -136,31 +136,35 @@ afterlag = new Afterlag()
 ```js
 // Ниже перечислены настройки, установленные по умолчанию
 afterlag = new Afterlag({
-  delay: 100,
-  frequency: 30,
-  iterations: 3,
+  delay: 200,
+  frequency: 50,
+  iterations: 10,
   duration: null,
   scatter: 5,
-  timeout: null
+  timeout: null,
+  need_lags: false
 })
 ```
-* **`delay`** по умолчанию 100  
+* **`delay`** по умолчанию `200`  
 В первое мгновение не всегда могут быть лаги. Но они появятся чуть позже. Значение `delay` определяет, какое количество миллисекунд после создания объекта не стоит доверять информации о том, что лагов нет.
 
-* **`frequency`** по умолчанию 30  
+* **`frequency`** по умолчанию `50`  
 В какие промежутки времени нужно проверять есть лаги или нет.
 
-* **`iterations`**: по умолчанию 3  
+* **`iterations`** по умолчанию `10`  
 Сколько раз подряд должно получиться так, что время, прошедшее с последней проверки действительно равно значению `frequency`.
 
 * **`duration`**  
 Вместо того чтобы указывать `iterations` , можно обозначить продолжительность. Таким образом, значение `iterations` будет вычислено по формуле: `Math.ceil(duration / frequency)`.
 
-* **`scatter`**: по умолчанию 5  
+* **`scatter`** по умолчанию `5`  
 Допустимая погрешность при сверке прошедшего времени со временем указанным в `frequency`.
 
 * **`timeout`**  
 Время, после которого следует вызвать все функции, переданные в колбэк, не дожидаясь окончания лагов.
+
+* **`need_lags`** по умолчанию `false`  
+При значении `false` афтерлаг сработает либо, если лаги закончатся, либо, если они даже не начнутся. Значение `true` разрешает афтерлагу сработать только после окончания лагов, то есть если лагов не было, афтелаг не сработает. Устанавливая значение `true` не забудьте также установить значение для `timeout`, в противно случае, если лагов не будет, афтерлаг так и не сработает.
 
 ## How to grab it?
 Grab via bower:  
@@ -169,10 +173,10 @@ Grab via bower:
 Grab via npm::  
 `$ npm install afterlag-js`
 
-Latest version CDN link (change 1.0.4 to older version if needed):
+Latest version CDN link (change 1.0.5 to older version if needed):
 ```
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/afterlag.min.js
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.4/dist/jquery.afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js
 ```
 
 At the worst try direct download.
