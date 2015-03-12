@@ -170,7 +170,7 @@ afterlag = new Afterlag({
 Grab via bower:  
 `$ bower install afterlag-js`
 
-Grab via npm::  
+Grab via npm:  
 `$ npm install afterlag-js`
 
 Latest version CDN link (change 1.0.5 to older version if needed):
