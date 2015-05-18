@@ -177,7 +177,7 @@ https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js
 https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js
 ```
 
-И только в крайнем случае скачивайте напрямую.
+И только в крайнем случае [скачивайте напрямую](https://github.com/iserdmi/afterlag-js/archive/master.zip).
 
 ## Нравится плагин?
 Тогда помогите, пожалуйста, перевести документацию на английский язык. Переведите часть текста и отправьте комментарием [к этому топику](https://github.com/iserdmi/afterlag-js/issues/1).
