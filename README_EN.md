@@ -10,7 +10,7 @@ Afterlag is built in native Javascript. jQuery plugin also exists. Plugin works 
 ## Быстрый старт
 Выберите, какой плагин вы будете использовать: нативный или джэйквери. Затем добавьте файл с плагином на свой сайт.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/afterlag.min.js"></script>
 ```
 ```js
 // Нативный яваскрипт
@@ -24,7 +24,7 @@ afterlag.do(function() {
 ```
 При подключении файла с джэйквери плагином, не нужно подключать файл с нативным плагином.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/jquery.afterlag.min.js"></script>
 ```
 ```js
 // Джэйквери плагин
@@ -173,10 +173,10 @@ Grab via bower:
 Grab via npm:  
 `$ npm install afterlag-js`
 
-Latest version CDN link (change 1.0.5 to older version if needed):
+Latest version CDN link (change 1.0.7 to older version if needed):
 ```
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/jquery.afterlag.min.js
 ```
 
 At the worst try direct download.

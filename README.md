@@ -8,7 +8,7 @@ Afterlag.js — плагин, отслеживающий событие прек
 ## Быстрый старт
 Выберите, какой плагин вы будете использовать: нативный или джэйквери. Затем добавьте файл с плагином на свой сайт.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/afterlag.min.js"></script>
 ```
 ```js
 // Нативный яваскрипт
@@ -22,7 +22,7 @@ afterlag.do(function() {
 ```
 При подключении файла с джэйквери плагином, не нужно подключать файл с нативным плагином.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/jquery.afterlag.min.js"></script>
 ```
 ```js
 // Джэйквери плагин
@@ -171,10 +171,10 @@ afterlag = new Afterlag({
 Можете через npm:  
 `$ npm install afterlag-js`
 
-Даже на cdn есть. Ссылка на последнюю версию. Если нужна будет какая-то другая версия, измените «1.0.5» в ссылке на нужное значение:
+Даже на cdn есть. Ссылка на последнюю версию. Если нужна будет какая-то другая версия, измените «1.0.7» в ссылке на нужное значение:
 ```
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/afterlag.min.js
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.5/dist/jquery.afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/jquery.afterlag.min.js
 ```
 
 И только в крайнем случае [скачивайте напрямую](https://github.com/iserdmi/afterlag-js/archive/master.zip).
