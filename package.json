@@ -1,8 +1,8 @@
 {
   "name": "afterlag-js",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Plugin for tracking page load lags.",
-  "main": "gulpfile.js",
+  "main": "dist/afterlag.min.js",
   "devDependencies": {
     "coffee-script": "^1.9.1",
     "gulp": "^3.8.11",
@@ -22,7 +22,10 @@
     "type": "git",
     "url": "https://github.com/iserdmi/afterlag-js.git"
   },
-  "author": "Sergey Dmitriev (serdmi.com)",
+  "author": {
+    "name": "Sergey Dmitriev",
+    "web": "http://serdmi.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/iserdmi/afterlag-js/issues"
