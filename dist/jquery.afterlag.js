@@ -1,4 +1,4 @@
-/* Afterlag.js 2.0.0 — Plugin for tracking page load lags. Author: Sergey Dmitriev (http://serdmi.com). Licensed MIT. */
+/* Afterlag.js 2.0.2 — Plugin for tracking page load lags. Author: Sergey Dmitriev (http://serdmi.com). Licensed MIT. */
 (function() {
   var Afterlag, AfterlagHelper;
 

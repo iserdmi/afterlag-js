@@ -1,6 +1,6 @@
 {
   "name": "afterlag-js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Plugin for tracking page load lags.",
   "main": "dist/afterlag.min.js",
   "devDependencies": {

@@ -10,21 +10,21 @@ Afterlag is built in native Javascript. jQuery plugin also exists. Plugin works 
 ## Быстрый старт
 Выберите, какой плагин вы будете использовать: нативный или джэйквери. Затем добавьте файл с плагином на свой сайт.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/2.0.2/dist/afterlag.min.js"></script>
 ```
 ```js
 // Нативный яваскрипт
 afterlag = new Afterlag();
-afterlag.do(function() {
+afterlag.run(function() {
   console.log('Лаги прошли, пора начинать!');
 });
-afterlag.do(function() {
+afterlag.run(function() {
   console.log('Анонимные функции, поднимайтесь!');
 });
 ```
 При подключении файла с джэйквери плагином, не нужно подключать файл с нативным плагином.
 ```html
-<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/jquery.afterlag.min.js"></script>
+<script src="https://cdn.rawgit.com/iserdmi/afterlag-js/2.0.2/dist/jquery.afterlag.min.js"></script>
 ```
 ```js
 // Джэйквери плагин
@@ -39,7 +39,7 @@ $.afterlag(function() {
 ## Принцип работы
 При создании нового объекта `new Afterlag()` запускается интервал, который каждые 50 миллисекунд проверяет, сколько реально времени прошло с момента его последнего запуска. Если прошло 50 миллисекунд — как ожидалось — значит, лаги кончились. Чтобы убедиться наверняка, ждём, пока время сойдётся 10 раз подряд. Все перечисленные выше значения можно изменить в настройках.
 
-После того как лаги пройдут, будут вызваны все функции переданные через `afterlag.do()`. Если функция будет передана в `afterlag.do()` уже после того, как кончатся лаги, функция будет вызвана немедленно.
+После того как лаги пройдут, будут вызваны все функции переданные через `afterlag.run()`. Если функция будет передана в `afterlag.run()` уже после того, как кончатся лаги, функция будет вызвана немедленно.
 
 При вызове `$.afterlag()` автоматически будет создан новый объект, если прежде уже был вызван `$.afterlag()`, вместо нового объекта возьмётся старый. Функция, переданная в `$.afterlag()`, будет вызвана после окончания лагов.
 
@@ -52,7 +52,7 @@ afterlag = new Afterlag([options])
 
 ```js
 // Добавление колбэка
-afterlag.do(function(info) {})
+afterlag.run(function(info) {})
 ```
 Переданная функция будет вызвана по завершении лагов. Если лаги уже кончились, функция будет вызвана сразу же. Внутри переданной функции переменная `this` будет содержать в себе API афтерлага. Переменная `info` является объектом и несёт в себе информацию об объекте `afterlag` в момент вызова переданной функции:  
 * **`info.status`**  
@@ -69,7 +69,7 @@ afterlag.do(function(info) {})
 
 ```js
 // Добавление колбэка с указанием this
-afterlag.do(object, function(info) {})
+afterlag.run(object, function(info) {})
 ```
 `object` будет доступен внутри переданной функции как `this`.
 
@@ -84,7 +84,7 @@ afterlag = $.afterlag([options])
 // Создание нового колбэка
 $.afterlag(function(info) {})
 ```
-Если афтерлаг вызывается впервые, будет создан новый объект, иначе будет взят последний созданный объект. Функция возвращает используемый объект. В остальном работает также как и `afterlag.do()`. Внутри переданной функции переменная `this` будет содержать в себе API афтерлага.
+Если афтерлаг вызывается впервые, будет создан новый объект, иначе будет взят последний созданный объект. Функция возвращает используемый объект. В остальном работает также как и `afterlag.run()`. Внутри переданной функции переменная `this` будет содержать в себе API афтерлага.
 
 ```js
 // Создание колбэка и нового объекта
@@ -129,7 +129,7 @@ afterlag = new Afterlag()
 * **`afterlag.time_passed`**  
 Количество миллисекунд, прошедшее с момента создания объектов до окончания лагов.
 
-* **`afterlag.do()`**  
+* **`afterlag.run()`**  
 Метод для добавления колбэков.
 
 # Настройки
@@ -173,10 +173,10 @@ Grab via bower:
 Grab via npm:  
 `$ npm install afterlag-js`
 
-Latest version CDN link (change 1.0.7 to older version if needed):
+Latest version CDN link (change 2.0.2 to older version if needed):
 ```
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/afterlag.min.js
-https://cdn.rawgit.com/iserdmi/afterlag-js/1.0.7/dist/jquery.afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/2.0.2/dist/afterlag.min.js
+https://cdn.rawgit.com/iserdmi/afterlag-js/2.0.2/dist/jquery.afterlag.min.js
 ```
 
 At the worst try direct download.
