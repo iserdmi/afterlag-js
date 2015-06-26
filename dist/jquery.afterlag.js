@@ -1,4 +1,4 @@
-/* Afterlag.js 1.0.5 — Plugin for tracking page load lags. Author: Sergey Dmitriev (serdmi.com). Licensed MIT. */
+/* Afterlag.js 2.0.0 — Plugin for tracking page load lags. Author: Sergey Dmitriev (http://serdmi.com). Licensed MIT. */
 (function() {
   var Afterlag, AfterlagHelper;
 
@@ -129,7 +129,7 @@
       return results;
     };
 
-    Afterlag.prototype["do"] = function(self, fn) {
+    Afterlag.prototype.run = function(self, fn) {
       var ref;
       if (fn == null) {
         ref = [self, this], fn = ref[0], self = ref[1];
@@ -197,7 +197,7 @@
     $.afterlag = function(options, callback) {
       var data;
       data = normalize_data(options, callback);
-      data.afterlag["do"](function(info) {
+      data.afterlag.run(function(info) {
         if (data.callback != null) {
           data.callback.call(data.afterlag, info);
         }
@@ -216,7 +216,7 @@
         $element = $(this);
         $element.data('afterlag', data.afterlag);
         self = this;
-        return data.afterlag["do"](function(info) {
+        return data.afterlag.run(function(info) {
           if (data.callback != null) {
             data.callback.call(self, info);
           }

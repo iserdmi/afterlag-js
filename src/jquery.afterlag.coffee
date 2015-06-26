@@ -35,7 +35,7 @@ do ($=jQuery) ->
 
   $.afterlag = (options, callback) ->
     data = normalize_data(options, callback)
-    data.afterlag.do (info) ->
+    data.afterlag.run (info) ->
       data.callback.call(data.afterlag, info) if data.callback?
       $(document).trigger 'afterlag', [info]
       if data.trigger?
@@ -48,7 +48,7 @@ do ($=jQuery) ->
       $element = $(@)
       $element.data 'afterlag', data.afterlag
       self = @
-      data.afterlag.do (info) ->
+      data.afterlag.run (info) ->
         data.callback.call(self, info) if data.callback?
         $element.trigger 'afterlag', [info]
         if data.trigger?

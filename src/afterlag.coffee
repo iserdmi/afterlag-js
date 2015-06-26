@@ -80,7 +80,7 @@ class Afterlag
     for callback in @_callbacks
       callback.fn.call(callback.self, @info())
 
-  do: (self, fn) ->
+  run: (self, fn) ->
     if not fn?
       [fn, self] = [self, @]
     if @ready

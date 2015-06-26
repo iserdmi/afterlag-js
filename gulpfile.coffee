@@ -9,7 +9,7 @@ insert = require 'gulp-insert'
 sourcemaps = require 'gulp-sourcemaps'
 bower_config = require './bower.json'
 
-copyrights = "/* Afterlag.js #{bower_config.version} — #{bower_config.description} Author: #{bower_config.authors[0]}. Licensed MIT. */\n"
+copyrights = "/* Afterlag.js #{bower_config.version} — #{bower_config.description} Author: #{bower_config.author.name} (#{bower_config.author.web}). Licensed MIT. */\n"
 
 gulp.task 'scripts', ->
   gulp.src('src/*.coffee')
